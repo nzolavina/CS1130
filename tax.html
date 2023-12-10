@@ -1,0 +1,176 @@
+<html>
+<head>
+    <meta name="viewport" content="with=device-width, initial-scale 1.0">
+    <title> Intro to Computing Website</title>
+    <link rel="stylesheet" href="style.css"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="header">
+        <nav>
+            <a href="index.html"><img src="pics/pawfinal.png"></a>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="converter.html">UNIT CONVERSION</a></li>
+                    <li><a href="nth.html">NTH FACTORIAL</a></li>
+                    <li><a href="tax.html">INCOME TAX</a></li>
+                    <li><a href="payroll.html">PAYROLL</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Income Tax Calculator</title>
+            <style>
+                body {
+                    text-align: center;
+                    margin: 20px;
+                }
+        
+                label {
+                    margin: 10px;
+                    font-weight: bold;
+                    font-size: 25px;
+                }
+        
+                input {
+                    padding: 5px;
+                    margin: 5px;
+                    text-align: center;
+                    border-radius: 10px;
+                }
+        
+                button {
+                    padding: 10px;
+                    margin: 10px;
+                    font-size: 16px;
+                    cursor: pointer;
+                    border-radius: 10px;
+                    text-align: right;
+                }
+        
+                .container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: 20px;
+                }
+        
+                #results {
+                    display: none;
+                    text-align: middle;
+                    padding: 10px;
+                    background-color: rgba(255, 255, 255, 0.8);
+                    border-radius: 10px;
+                    margin-top: 20px;
+                    width: 60%; /* Adjusted width */
+                }
+        
+                table {
+                    margin-top: 20px;
+                    border-collapse: collapse;
+                    width: 80%;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+        
+                th, td {
+                    border: 1px solid #dddddd;
+                    text-align: right;
+                    padding: 8px;
+                }
+            </style>
+        </head>
+        
+        <body>
+        
+        <div class="container">
+            <label for="taxableIncome">Enter Taxable Income:</label>
+            <input type="number" id="taxableIncome" required>
+        
+            <button onclick="calculateIncomeTax()">Calculate Income Tax</button>
+        
+            <div id="results"></div>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Over</th>
+                    <th>But Not Over</th>
+                    <th>Basic Tax + Rate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>-</td>
+                    <td>P250,000</td>
+                    <td>0%</td>
+                </tr>
+                <tr>
+                    <td>P250,000</td>
+                    <td>P400,000</td>
+                    <td>20% of the excess over P250,000</td>
+                </tr>
+                <tr>
+                    <td>P400,000</td>
+                    <td>P800,000</td>
+                    <td>P30,000 + 25% of the excess over P400,000</td>
+                </tr>
+                <tr>
+                    <td>P800,000</td>
+                    <td>P2,000,000</td>
+                    <td>P130,000 + 30% of the excess over P800,000</td>
+                </tr>
+                <tr>
+                    <td>P2,000,000</td>
+                    <td>P8,000,000</td>
+                    <td>P490,000 + 32% of the excess over P2,000,000</td>
+                </tr>
+                <tr>
+                    <td>P8,000,000</td>
+                    <td>---</td>
+                    <td>P2,410,000 + 35% of the excess over P8,000,000</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <script>
+            function calculateIncomeTax() {
+                const taxableIncome = parseFloat(document.getElementById("taxableIncome").value);
+        
+                let incomeTax = 0;
+        
+                if (taxableIncome <= 250000) {
+                    incomeTax = 0;
+                } else if (taxableIncome <= 400000) {
+                    incomeTax = 0.2 * (taxableIncome - 250000);
+                } else if (taxableIncome <= 800000) {
+                    incomeTax = 30000 + 0.25 * (taxableIncome - 400000);
+                } else if (taxableIncome <= 2000000) {
+                    incomeTax = 130000 + 0.3 * (taxableIncome - 800000);
+                } else if (taxableIncome <= 8000000) {
+                    incomeTax = 490000 + 0.32 * (taxableIncome - 2000000);
+                } else {
+                    incomeTax = 2410000 + 0.35 * (taxableIncome - 8000000);
+                }
+        
+                const resultsDiv = document.getElementById("results");
+                resultsDiv.innerHTML = `
+                    <p>Net Taxable Income: ${taxableIncome.toFixed(2)}</p>
+                    <p>Income Tax: ${incomeTax.toFixed(2)}</p>
+                `;
+        
+                resultsDiv.style.display = "block";
+            }
+        </script>
+        
+        </body>
+        
+        </html>

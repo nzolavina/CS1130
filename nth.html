@@ -1,0 +1,136 @@
+<html>
+<head>
+    <meta name="viewport" content="with=device-width, initial-scale 1.0">
+    <title> Intro to Computing Website</title>
+    <link rel="stylesheet" href="style.css"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="header">
+        <nav>
+            <a href="index.html"><img src="pics/pawfinal.png"></a>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="converter.html">UNIT CONVERSION</a></li>
+                    <li><a href="nth.html">NTH FACTORIAL</a></li>
+                    <li><a href="tax.html">INCOME TAX</a></li>
+                    <li><a href="payroll.html">PAYROLL</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Number Operations</title>
+            <style>
+                body {
+                    text-align: center;
+                    margin: 20px;
+                }
+        
+                label {
+                    margin: 10px;
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+        
+                input {
+                    background-color: rgb(255, 255, 255);
+                    border-radius: 50px;
+                    font-size: 20px;
+                    padding: 15px;
+                    margin: 15px;
+                    text-align: right;
+                }
+        
+                button {
+                    padding: 10px;
+                    margin: 10px;
+                    font-size: 16px;
+                    cursor: pointer;
+                    border-radius: 50px;
+                }
+        
+                .container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+        
+                #results {
+                    display: none;
+                    text-align: right;
+                    padding: 10px;
+                    background-color: rgba(255, 255, 255, 0.8);
+                    border-radius: 10px;
+                    margin-top: 20px;
+                    color: black;
+                }
+            </style>
+        </head>
+        
+        <body>
+        
+        <div class="container">
+            <label for="inputNumber">Enter a number (n):</label>
+            <input type="number" id="inputNumber" required>
+        
+            <button onclick="calculateResults()">Calculate</button>
+        
+            <div id="results"></div>
+        </div>
+        
+        <script>
+            function calculateResults() {
+                // Get the input value
+                const n = parseInt(document.getElementById("inputNumber").value);
+        
+                // Validate input
+                if (isNaN(n) || n < 0) {
+                    alert("Please enter a non-negative integer.");
+                    return;
+                }
+        
+                // Calculate factorial using a While Loop
+                let factorial = 1;
+                let i = 1;
+                while (i <= n) {
+                    factorial *= i;
+                    i++;
+                }
+        
+                // Calculate the sum of the first n numbers using a Do While Loop
+                let sum = 0;
+                let j = 1;
+                do {
+                    sum += j;
+                    j++;
+                } while (j <= n);
+        
+                // Calculate the average of the first n numbers using a For Loop
+                let average = 0;
+                for (let k = 1; k <= n; k++) {
+                    average += k;
+                }
+                average /= n;
+        
+                // Display the results
+                const resultsDiv = document.getElementById("results");
+                resultsDiv.innerHTML = `
+                    <p>The ${n}th factorial is: ${factorial}</p>
+                    <p>The sum of the first ${n} numbers is: ${sum}</p>
+                    <p>The average of the first ${n} numbers is: ${average.toFixed(2)}</p>
+                `;
+        
+                // Show the results div
+                resultsDiv.style.display = "block";
+            }
+        </script>
+        
+        </body>
+        
+        </html>
